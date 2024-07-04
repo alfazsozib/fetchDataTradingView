@@ -3,11 +3,12 @@ import axios from 'axios';
 
 
 function GetData() {
-    const [data, setData] = useState(null);
+    const [data, setData] = useState([]);
 
     const getData = async() =>{
         axios.get('http://45.77.70.32:80/update-data')
         .then(response => {
+            
             setData(response.data);
             console.log(response.data)
         })
@@ -21,8 +22,9 @@ function GetData() {
 
             <h1>Received Data</h1>
             <button onClick={getData}>Get Data</button>
-            <p>Parameter: {data?.parameter}</p>
-            <p>Body: {data?.body}</p>
+                {data.map((data,index)=>
+                <p>{data?.body}</p>
+                )}
         </div>
   )
 }

@@ -66,12 +66,21 @@ app.post('/get-alert/:param', (req, res) => {
     }
 });
 
-app.get('/update-data', (req, res) => {
-    // This route will be used by the frontend to get the data
-    res.json({
-        data: storData
-    });
+app.get('/update-data/:param', (req, res) => {
+    const param = req.params.param;
+    const filteredData = storedData.filter(item => item.parameter === param);
+
+    if (filteredData.length > 0) {
+        res.json({
+            data: filteredData
+        });
+    } else {
+        res.status(404).json({
+            error: 'No data found for the given parameter'
+        });
+    }
 });
+
 
 
 app.listen(port, () => {
