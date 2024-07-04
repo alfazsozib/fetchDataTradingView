@@ -21,7 +21,7 @@ function GenUrl() {
                 <p>{getUrl}</p>
             </div>
         </div>       
-        <GetData /> 
+        {/* <GetData />  */}
     </div>
   )
 }
