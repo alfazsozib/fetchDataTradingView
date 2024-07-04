@@ -29,8 +29,17 @@ app.get('/generate-url', (req, res) => {
 });
 
 app.post("/get-alert",(req,res)=>{
-    console.log(req.body)
-    res.send(req)
+    console.log(req)
+    // Check the content type of the incoming request
+    if (req.is('application/json')) {
+        console.log('Received JSON:', req.body);
+        res.json(req.body); // Send back the parsed JSON body as the response
+    } else if (req.is('text/plain')) {
+        console.log('Received plain text:', req.body);
+        res.send(req.body); // Send back the plain text body as the response
+    } else {
+        res.status(415).send('Unsupported Media Type'); // If the content type is not supported
+    }
 })
 
 
