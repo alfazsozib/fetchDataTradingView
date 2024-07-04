@@ -28,9 +28,24 @@ app.get('/generate-url', (req, res) => {
     res.json({ url: uniqueUrl });
 });
 
+// Custom middleware to parse plain text bodies
+app.use((req, res, next) => {
+    if (req.is('text/plain')) {
+        let data = '';
+        req.setEncoding('utf8');
+        req.on('data', chunk => {
+            data += chunk;
+        });
+        req.on('end', () => {
+            req.body = data;
+            next();
+        });
+    } else {
+        next();
+    }
+});
+
 app.post("/get-alert",(req,res)=>{
-    console.log(req)
-    // Check the content type of the incoming request
     if (req.is('application/json')) {
         console.log('Received JSON:', req.body);
         res.json(req.body); // Send back the parsed JSON body as the response
