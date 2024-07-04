@@ -46,23 +46,24 @@ app.use((req, res, next) => {
 });
 
 app.post('/get-alert/:param', (req, res) => {
-    const param = req.params.param; // Capture the dynamic part of the URL
+    const param = req.params.param; 
     console.log('Received dynamic parameter:', param);
 
-    if (req.is('application/json')) {
-        console.log('Received JSON:', req.body);
-        res.json({
-            parameter: param,
-            body: req.body
-        }); // Send back the parsed JSON body and parameter as the response
-    } else if (req.is('text/plain')) {
+    // if (req.is('application/json')) {
+    //     console.log('Received JSON:', req.body);
+    //     res.json({
+    //         parameter: param,
+    //         body: req.body
+    //     });
+    // } else 
+    if (req.is('text/plain')) {
         console.log('Received plain text:', req.body);
         res.send({
             parameter: param,
             body: req.body
-        }); // Send back the plain text body and parameter as the response
+        }); 
     } else {
-        res.status(415).send('Unsupported Media Type'); // If the content type is not supported
+        res.status(415).send('Unsupported Media Type');
     }
 });
 
