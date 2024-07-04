@@ -47,24 +47,13 @@ app.use((req, res, next) => {
 
 
 app.post('/get-alert/:param', (req, res) => {
-    // const param = req.params.param; 
-    // console.log('Received dynamic parameter:', param);
-    // if (req.is('text/plain')) {
-    //     console.log('Received plain text:', req.body);
-    //     res.json({
-    //         parameter: param,
-    //         body: req.body
-    //     }); 
-    // } else {
-    //     res.status(415).send('Unsupported Media Type');
-    // }
-
     const param = req.params.param; 
     console.log('Received dynamic parameter:', param);
     if (req.is('text/plain')) {
         console.log('Received plain text:', req.body);
-        // Sending data to frontend
-        app.get(`/update-data`, {
+
+        // Sending data to React frontend
+        axios.get('http://45.77.70.32:3007/update-data', {
             params: {
                 parameter: param,
                 body: req.body
@@ -84,6 +73,13 @@ app.post('/get-alert/:param', (req, res) => {
     }
 });
 
+app.get('/update-data', (req, res) => {
+    // This route will be used by the frontend to get the data
+    res.json({
+        parameter: req.query.parameter,
+        body: req.query.body
+    });
+});
 
 
 app.listen(port, () => {
