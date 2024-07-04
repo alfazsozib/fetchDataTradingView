@@ -1,7 +1,5 @@
 import {React, useState} from 'react'
 import axios from 'axios'
-import GetData from '../GetData'
-
 
 function GenUrl() {
     const [getUrl, setUrl] = useState()
@@ -21,7 +19,6 @@ function GenUrl() {
                 <p>{getUrl}</p>
             </div>
         </div>       
-        {/* <GetData />  */}
     </div>
   )
 }
