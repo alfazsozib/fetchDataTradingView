@@ -68,8 +68,9 @@ app.post('/get-alert/:param', (req, res) => {
 console.log(storedData)
 app.get("/get-alert-data/:param",(req,res)=>{
     const param = req.params.param;
+    console.log(param)
+    console.log(storedData.parameter)
     if (storedData.parameter == param){
-        console.log(storedData + "Console")
         res.json(storedData)
     }
 })
