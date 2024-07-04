@@ -28,7 +28,7 @@ app.get('/generate-url', (req, res) => {
     res.json({ url: uniqueUrl });
 });
 
-// Custom middleware to parse plain text bodies
+//  middleware to parse plain text bodies
 app.use((req, res, next) => {
     if (req.is('text/plain')) {
         let data = '';
