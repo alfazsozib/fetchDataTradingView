@@ -6,7 +6,7 @@ const cors = require('cors')
 
 const app = express();
 app.use(cors());
-const port = 3007;
+const port = 80;
 
 // Storage for generated URLs
 const urls = new Set();
