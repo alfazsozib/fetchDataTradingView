@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const port = 8081;
+const port = 80;
 
 // Storage for generated URLs
 const urls = new Set();
@@ -65,9 +65,11 @@ app.post('/get-alert/:param', (req, res) => {
     }
 });
 
+console.log(storedData)
 app.get("/get-alert-data",(req,res)=>{
     const param = req.params.param;
     if (storedData.parameter == param){
+        console.log(storedData + "Console")
         res.json(storedData)
     }
 })
