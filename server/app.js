@@ -68,7 +68,7 @@ app.post('/get-alert/:param', (req, res) => {
 
 app.get('/update-data/:param', (req, res) => {
     const param = req.params.param;
-    const filteredData = storedData.filter(item => item.parameter === param);
+    const filteredData = storeData.filter(item => item.parameter === param);
 
     if (filteredData.length > 0) {
         res.json({
