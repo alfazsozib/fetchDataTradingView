@@ -29,7 +29,7 @@ app.get('/generate-url', (req, res) => {
 });
 
 app.post("/get-alert",(req,res)=>{
-    // console.log()
+    console.log(req.body)
     res.send(req)
 })
 
