@@ -26,7 +26,8 @@ app.get('/generate-url', (req, res) => {
 });
 
 app.post("/get-alert",(req,res)=>{
-    console.log(req.body)
+    // console.log()
+    res.send(req)
 })
 
 
