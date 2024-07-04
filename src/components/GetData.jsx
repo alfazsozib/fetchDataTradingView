@@ -6,9 +6,10 @@ function GetData() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get('/update-data')
+        axios.get('http://45.77.70.32:3007/update-data')
             .then(response => {
                 setData(response.data);
+                console.log(response.data)
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
