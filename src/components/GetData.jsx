@@ -16,10 +16,6 @@ function GetData() {
         });
     }
 
-    if (!data) {
-        return <div>Loading...</div>;
-    }
-
   return (
     <div>
 
