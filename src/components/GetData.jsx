@@ -21,8 +21,8 @@ function GetData() {
 
             <h1>Received Data</h1>
             <button onClick={getData}>Get Data</button>
-            <p>Parameter: {data.parameter}</p>
-            <p>Body: {data.body}</p>
+            <p>Parameter: {data?.parameter}</p>
+            <p>Body: {data?.body}</p>
         </div>
   )
 }
