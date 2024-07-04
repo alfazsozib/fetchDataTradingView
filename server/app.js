@@ -21,7 +21,7 @@ app.get('/generate-url', (req, res) => {
         uniqueId = uuidv4().replace(/-/g, '');
     } while (urls.has(uniqueId));
     urls.add(uniqueId);
-    const uniqueUrl = `http://localhost:${port}/${uniqueId}`;
+    const uniqueUrl = `http://45.77.70.32:${port}/${uniqueId}`;
     res.json({ url: uniqueUrl });
 });
 
