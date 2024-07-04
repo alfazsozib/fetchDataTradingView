@@ -64,7 +64,7 @@ app.post('/get-alert/:param', (req, res) => {
     if (req.is('text/plain')) {
         console.log('Received plain text:', req.body);
         // Sending data to frontend
-        axios.get(`http://45.77.70.32:3007/update-data`, {
+        app.get(`/update-data`, {
             params: {
                 parameter: param,
                 body: req.body
