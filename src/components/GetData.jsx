@@ -6,7 +6,7 @@ function GetData() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        axios.get('http://45.77.70.32:3007/update-data')
+        axios.get('http://45.77.70.32:80/update-data')
             .then(response => {
                 setData(response.data);
                 console.log(response.data)
