@@ -6,10 +6,10 @@ function GenUrl() {
     const [getUrl, setUrl] = useState()
 
     const urlHandler=async()=>{
-        const res = await axios.get("http://localhost:3000/generate-url")
+        const res = await axios.get("http://localhost:80/generate-url")
         setUrl(res.data['url'])
     }
-
+    
   return (
     <div>
         <div>
