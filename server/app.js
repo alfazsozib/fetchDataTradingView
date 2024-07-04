@@ -45,17 +45,36 @@ app.use((req, res, next) => {
     }
 });
 
-let storedData = [];
+
 app.post('/get-alert/:param', (req, res) => {
+    // const param = req.params.param; 
+    // console.log('Received dynamic parameter:', param);
+    // if (req.is('text/plain')) {
+    //     console.log('Received plain text:', req.body);
+    //     res.json({
+    //         parameter: param,
+    //         body: req.body
+    //     }); 
+    // } else {
+    //     res.status(415).send('Unsupported Media Type');
+    // }
+
     const param = req.params.param; 
     console.log('Received dynamic parameter:', param);
     if (req.is('text/plain')) {
         console.log('Received plain text:', req.body);
-        // Store the data
-        storedData.push({
-            parameter: param,
-            body: req.body
+        // Sending data to frontend
+        axios.get(`http://45.77.70.32:3007/update-data`, {
+            params: {
+                parameter: param,
+                body: req.body
+            }
+        }).then(response => {
+            console.log('Data sent to React frontend:', response.data);
+        }).catch(error => {
+            console.error('Error sending data to React frontend:', error);
         });
+
         res.json({
             parameter: param,
             body: req.body
@@ -65,15 +84,7 @@ app.post('/get-alert/:param', (req, res) => {
     }
 });
 
-console.log(storedData)
-app.get("/get-alert-data/:param",(req,res)=>{
-    const param = req.params.param;
-    console.log(param)
-    console.log(storedData.parameter)
-    if (storedData.parameter == param){
-        res.json(storedData)
-    }
-})
+
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);

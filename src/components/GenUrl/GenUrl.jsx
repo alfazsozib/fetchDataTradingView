@@ -1,15 +1,15 @@
 import {React, useState} from 'react'
 import axios from 'axios'
+import GetData from '../GetData'
 
 
 function GenUrl() {
     const [getUrl, setUrl] = useState()
 
     const urlHandler=async()=>{
-        const res = await axios.get("http://localhost:80/generate-url")
+        const res = await axios.get("http://45.77.70.32:80/generate-url")
         setUrl(res.data['url'])
     }
-    
   return (
     <div>
         <div>
@@ -20,7 +20,8 @@ function GenUrl() {
             <div>
                 <p>{getUrl}</p>
             </div>
-        </div>        
+        </div>       
+        <GetData /> 
     </div>
   )
 }
