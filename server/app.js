@@ -45,13 +45,13 @@ app.use((req, res, next) => {
     }
 });
 
-let storData = []
+let storeData = []
 app.post('/get-alert/:param', (req, res) => {
     const param = req.params.param; 
     console.log('Received dynamic parameter:', param);
     if (req.is('text/plain')) {
         console.log('Received plain text:', req.body);
-        storData.push(
+        storeData.push(
             {
             parameter: param,
             body: req.body
