@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const port = 80;
+const port = 8081;
 
 // Storage for generated URLs
 const urls = new Set();
@@ -45,20 +45,18 @@ app.use((req, res, next) => {
     }
 });
 
+let storedData = [];
 app.post('/get-alert/:param', (req, res) => {
     const param = req.params.param; 
     console.log('Received dynamic parameter:', param);
-
-    // if (req.is('application/json')) {
-    //     console.log('Received JSON:', req.body);
-    //     res.json({
-    //         parameter: param,
-    //         body: req.body
-    //     });
-    // } else 
     if (req.is('text/plain')) {
         console.log('Received plain text:', req.body);
-        res.send({
+        // Store the data
+        storedData.push({
+            parameter: param,
+            body: req.body
+        });
+        res.json({
             parameter: param,
             body: req.body
         }); 
@@ -66,6 +64,13 @@ app.post('/get-alert/:param', (req, res) => {
         res.status(415).send('Unsupported Media Type');
     }
 });
+
+app.get("/get-alert-data",(req,res)=>{
+    const param = req.params.param;
+    if (storedData.parameter == param){
+        res.json(storedData)
+    }
+})
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
